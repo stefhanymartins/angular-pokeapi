@@ -1,0 +1,29 @@
+<div class="card">
+  <h1>PokeAPI</h1>
+  <input
+    type="text"
+    [(ngModel)]="search"
+    (input)="onInputValueChange()"
+    [ngModelOptions]="{ standalone: isClicked }"
+  />
+  <button
+    (click)="[getPokemon($any(search)), onButtonClick()]"
+    [disabled]="isInputValueEmpty"
+  >
+    SEARCH
+  </button>
+  <div class="not_found" *ngIf="!pokemonFound">Pokemon NOT FOUND!</div>
+  <div class="card_title">
+    <h3>{{ pokemon.name }}</h3>
+  </div>
+  <div class="card_body">
+    <img [attr.src]="pokemon.sprites.front_default" alt="pokemom" srcset="" />
+  </div>
+  <div class="card-stats">
+    <span class="card__stats-type" *ngFor="let t of pokemon.types">
+      {{ t.type.name }}
+    </span>
+  </div>
+</div>
+
+<!-- (input)="getPokemon($any($event.target).value) -->
